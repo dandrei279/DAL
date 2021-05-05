@@ -8,9 +8,9 @@ void setup() {
   /*********** DEBUG ************/
   
   /*********** SETUP PINS ************/
-  RED_PIN = 2;
-  GREEN_PIN = 3;
-  BLUE_PIN = 4;
+  RED_PIN = 9;
+  GREEN_PIN = 10;
+  BLUE_PIN = 11;
 
   pinMode(RED_PIN, OUTPUT);
   pinMode(GREEN_PIN, OUTPUT);
@@ -22,8 +22,9 @@ void setup() {
 
 
   for (int velocity = 4; velocity < 6; velocity++) {
-    for (int rpm = MIN_RPM; rpm < MAX_RPM; rpm++) {
-      Serial.println(rpm);
+    for (int rpm = 700; rpm < 6000; rpm++) {
+      Serial.print(rpm);
+      Serial.print("\t");
       setLED(rpm, velocity);
       delay(2);
     }

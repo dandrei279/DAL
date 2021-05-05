@@ -3,14 +3,32 @@
  * PINS, and HSV-RGB conversion
  */
 
+#define MAX_RED 255
+#define MAX_GREEN 127
+#define MAX_BLUE 127
+
+
 int RED_PIN;
 int GREEN_PIN;
 int BLUE_PIN;
 
 void setColorRGB(unsigned int red, unsigned int green, unsigned int blue) {
-  analogWrite(RED_PIN, 255 - red);
-  analogWrite(GREEN_PIN, 255 - green);
-  analogWrite(BLUE_PIN, 255 - blue);
+  unsigned int r, g, b;
+
+  r = (double) red / 255 * MAX_RED;
+  g = (double) green / 255 * MAX_GREEN;
+  b = (double) blue / 255 * MAX_BLUE;
+
+  Serial.print(255 - r);
+  Serial.print(",");
+  Serial.print(255 - g);
+  Serial.print(",");
+  Serial.println(255 - b);
+  
+  
+  analogWrite(RED_PIN, 255-red);
+  analogWrite(GREEN_PIN, 255-green);
+  analogWrite(BLUE_PIN, 255-blue);
 }
 
 // Convert a given HSV (Hue Saturation Value) to RGB(Red Green Blue) and set the led to the color
