@@ -1,4 +1,6 @@
 #include "core.h"
+#include "bluetooth.h"
+#include "ELM327.h"
 
 void setup() {
   
@@ -20,7 +22,7 @@ void setup() {
   /* Start with LEDs OFF */
   setColorRGB(0,0,0);
 
-
+/*
   for (int velocity = 4; velocity < 6; velocity++) {
     for (int rpm = 700; rpm < 6000; rpm++) {
       Serial.print(rpm);
@@ -29,8 +31,16 @@ void setup() {
       delay(2);
     }
   }
+  */
+  
+  BT_init();
+  ELM_init();
+  get_RPM();
+  delay(500);
 }
 
 void loop () {
-
+  
+  get_RPM();
+  delay(500);
 }
