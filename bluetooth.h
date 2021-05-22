@@ -8,29 +8,35 @@ SoftwareSerial BTSerial(RxD, TxD);
 bool BT_initialized = false;
 
 void BT_init() {
+  if (BT_initialized)
+    return;
+
   BTSerial.begin(38400);
   BT_initialized = true;
+  Serial.println("Bluetooth initialized");
 }
 
-String BT_send(String command) {
-  byte input_data;
-  char input_char;
-  String response;
+void BT_send(String command) {
   
   if (!BT_initialized) {
     return "";
   }
+  for (char c : command) {
+    BTSerial.write((byte) c);
+  }
+  BTSerial.write((byte)'\r');
+  BTSerial.write((byte)'\n');
+}
 
-  BTSerial.print(command + "\n\r");
-
-  delay(1000);
-
+String BT_read() {
+  byte input_data;
+  char input_char;
+  String response = "";
+  
   while (BTSerial.available() > 0) {
     input_data = BTSerial.read();
     input_char = char(input_data);
     response = response + input_char;
   }
-  
-  Serial.println(response);
   return response;
 }

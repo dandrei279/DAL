@@ -1,6 +1,8 @@
 #include "led.h"
 #include "car.h"
 
+#include <stdlib.h>
+
 #define MIN_LOW_HUE 240
 #define MAX_LOW_HUE 165
 
@@ -9,6 +11,10 @@
 
 #define MIN_HI_HUE 80
 #define MAX_HI_HUE 0
+
+int hex_to_dec(String value) {
+  return strtol(value.c_str(), NULL, 16);
+}
 
 int getHue(int rpm) {
    /*
@@ -43,12 +49,7 @@ int getHue(int rpm) {
      
   double a = (double)(max_hue - min_hue) / (max_rpm - min_rpm);
   double b = min_hue - a * min_rpm;
-
-
-  Serial.print(a);
-  Serial.print("  - ");
-  Serial.print(b);
-  Serial.print("\t");
+  
   return (int) (a * rpm + b);
 
 }
@@ -60,14 +61,7 @@ void setLED(int rpm, int velocity) {
   if (velocity < 5) {
     V = 0.4;
   }
-/*
-  Serial.print(H);
-  Serial.print(",");
-  Serial.print(S);
-  Serial.print(",");
-  Serial.println(V);
-  */
-
+  
   setLedColorHSV(H, S, V);
   
 }

@@ -18,13 +18,6 @@ void setColorRGB(unsigned int red, unsigned int green, unsigned int blue) {
   r = (double) red / 255 * MAX_RED;
   g = (double) green / 255 * MAX_GREEN;
   b = (double) blue / 255 * MAX_BLUE;
-
-  Serial.print(255 - r);
-  Serial.print(",");
-  Serial.print(255 - g);
-  Serial.print(",");
-  Serial.println(255 - b);
-  
   
   analogWrite(RED_PIN, 255-red);
   analogWrite(GREEN_PIN, 255-green);

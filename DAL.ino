@@ -1,6 +1,7 @@
 #include "core.h"
 #include "bluetooth.h"
 #include "ELM327.h"
+#include <string.h>
 
 void setup() {
   
@@ -35,12 +36,19 @@ void setup() {
   
   BT_init();
   ELM_init();
-  get_RPM();
-  delay(500);
+
+  
 }
 
 void loop () {
+  int RPM = get_RPM();
+  int velocity = get_speed();
+
+  Serial.print(RPM);
+  Serial.print(" - ");
+  Serial.println(velocity);
+
+  setLED(RPM, velocity);
   
-  get_RPM();
-  delay(500);
+//  delay(1000);
 }
