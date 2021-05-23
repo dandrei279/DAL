@@ -25,6 +25,10 @@ int getHue(int rpm) {
     * b = MIN_HUE - a * MIN_RPM;
    */
 
+  if (rpm > MAX_HI_RPM) {
+    return 0;
+  }
+
   int min_hue = 0, max_hue = 1;
   int min_rpm = 0, max_rpm = 1;
 

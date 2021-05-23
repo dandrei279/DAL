@@ -9,15 +9,15 @@ void ELM_init() {
   
   BT_send("atl1");  
   
-  delay(2000);
+  delay(1000);
   Serial.println("recv: \"" + BT_read() + "\"");
   BT_send("ath0");
   
-  delay(2000);
+  delay(1000);
   Serial.println("recv: \"" + BT_read() + "\"");
   BT_send("ATSP0");
 
-  delay(2000);
+  delay(1000);
   Serial.println("recv: \"" + BT_read() + "\"");
 }
 
@@ -32,21 +32,27 @@ int convert_RPM(String value) {
 int get_RPM() {
   BT_send("010C");
   
-  delay(1000);
+  delay(650);
   response = BT_read();
   if (response == "") {
     return -1;
   }
+  if (response.indexOf("SEARCH") > 0) {
+    delay(4000);
+    return -1;
+  }
+//  Serial.println(response);
   return convert_RPM(response.substring(12, 17));
 }
 
 int get_speed() {
   BT_send("010D");
   
-  delay(1000);
+  delay(750);
   response = BT_read();
   if (response == "") {
     return -1;
   }
+//  Serial.println(response);
   return hex_to_dec(response.substring(12, 14));
 }
