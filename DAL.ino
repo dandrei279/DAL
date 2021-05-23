@@ -21,18 +21,7 @@ void setup() {
   /********* END SETUP PINS **********/
 
   /********* WAIT FOR BLUETOOTH TO CONNECT **********/
-  delay(10000); // 10s  
-
-
-//  for (int velocity = 4; velocity < 6; velocity++) {
-//    for (int rpm = 700; rpm < 6000; rpm++) {
-//      Serial.print(rpm);
-//      Serial.print("\n");
-//      setLED(rpm, velocity);
-//      delay(2);
-//    }
-//  }
-  
+  delay(10000); // 10s   
   
   /* Start with LEDs OFF */
   setColorRGB(255,0,0);
@@ -48,6 +37,13 @@ void setup() {
 }
 
 void loop () {
+  /* 
+   *  The circuit can be dimmed depending on the velocity of the car.  
+   *  However it takes time to get the speed of tha car and this will make
+   *  the system more slow.
+   *  
+   *  If you want to test that, just uncomment the lines below
+   */
   int RPM = get_RPM();
 //  int velocity = get_speed();
 
@@ -55,10 +51,10 @@ void loop () {
 //  Serial.print(" - ");
 //  Serial.println(velocity);
 
+  // if the ignition is turned off, reset the connection.
   if (RPM < MIN_LOW_RPM && RPM > 10) {
     ELM_init();
   }
 
   setLED(RPM, 10);
- 
 }

@@ -1,3 +1,7 @@
+/*
+ * Control the bluetooth connection
+ */
+
 #include <SoftwareSerial.h>
 
 #define RxD 2

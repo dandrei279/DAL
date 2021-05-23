@@ -1,3 +1,7 @@
+/*
+ * Translate car parameters into light
+ */
+
 #include "led.h"
 #include "car.h"
 

@@ -1,6 +1,5 @@
 /*
  * Contains constants about the car
- * 
  */
 
 #define MIN_LOW_RPM 800
