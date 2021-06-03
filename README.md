@@ -17,5 +17,5 @@ It connects to the ECU and retrieves the RPM and set the interior light accordin
 
 #### Useful links:
 [Demo](https://youtu.be/XGqhdCEtTjM)<br>
-[Complete presentation](https://youtu.be/HCErRKVjjb4)<br>
+[Complete presentation](https://youtu.be/5Qh3ktYT47g)<br>
 [HC-05 AT commands](https://s3-sa-east-1.amazonaws.com/robocore-lojavirtual/709/HC-05_ATCommandSet.pdf)<br>
